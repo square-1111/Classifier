@@ -12,42 +12,21 @@ def process_image(img):
     return image
 
 
-def dataRetriever(selector):
+def dataRetriever():
     '''
         Assigning 1 to Mario and 0 to Wario
-        selector lets you select data set
-        1 : training data set
-        0 : testing data set
     '''
+    x = []
+    y = []
+    #Mario
+    for img in glob.glob('resources/Images/Mario/*.png'):
+        image = process_image(img)
+        x.append(image)
+        y.append(1)
 
-    if(selector == 1):
-        x_train = []
-        y_train = []
-        #Mario
-        for img in glob.glob('resources/Images/Train/Mario/*.png'):
-            image = process_image(img)
-            x_train.append(image)
-            y_train.append(1)
-
-        #Wario
-        for img in glob.glob('resources/Images/Train/Wario/*.png'):
-            image = process_image(img)
-            x_train.append(image)
-            y_train.append(0)
-        return x_train, y_train
-
-    if(selector == 0):
-        x_test = []
-        y_test = []
-        # Mario
-        for img in glob.glob('resources/Images/Test/Mario/*.png'):
-            image = process_image(img)
-            x_test.append(image)
-            y_test.append(1)
-
-        # Wario
-        for img in glob.glob('resources/Images/Test/Wario/*.png'):
-            image = process_image(img)
-            x_test.append(image)
-            y_test.append(0)
-        return x_test, y_test
+    #Wario
+    for img in glob.glob('resources/Images/Wario/*.png'):
+        image = process_image(img)
+        x.append(image)
+        y.append(0)
+    return x, y
